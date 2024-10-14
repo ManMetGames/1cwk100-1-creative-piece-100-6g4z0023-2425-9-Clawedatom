@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 
     PlayerLocomotion playerLocomotion;
     PlayerFlight playerFlight;
+
+    PlayerAnimationManager playerAnimationManager;
     #endregion
 
     #region Private Fields
@@ -113,11 +115,15 @@ public class PlayerManager : MonoBehaviour
 
         playerFlight = GetComponent<PlayerFlight>();    
         playerLocomotion = GetComponent<PlayerLocomotion>();
+
+        playerAnimationManager = GetComponentInChildren<PlayerAnimationManager>();
     }
     private void AwakenSiblings()
     {
         playerLocomotion.OnAwake();
         playerFlight.OnAwake();
+
+        playerAnimationManager.OnAwake();
     }
     public void OnStart()
     {
@@ -136,6 +142,8 @@ public class PlayerManager : MonoBehaviour
     {
         playerLocomotion.OnStart();
         playerFlight.OnStart();
+
+        playerAnimationManager.OnStart();
     }
     #endregion
 
@@ -168,7 +176,8 @@ public class PlayerManager : MonoBehaviour
         GroundedFlag = playerLocomotion.OnUpdate(inputManager.Vertical, inputManager.Horizontal, GroundedFlag, SprintFlag);
 
         playerFlight.OnUpdate(GlideFlag, FlightFlag);
-        
+
+        playerAnimationManager.OnUpdate(inputManager.MoveAmount, 0f, GroundedFlag, SprintFlag);
     }
 
 

@@ -23,6 +23,8 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private float groundDrag = 1f;
     [SerializeField] private float airDrag = 0.4f;
 
+    [SerializeField] private float rotationSpeed = 0.5f;
+
     [Header("Ground Ray Fields")]
     [SerializeField] private float maxRayDist = 0.4f;
     [SerializeField] private float yOffset;
@@ -110,6 +112,15 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection.y = 0f;
         rigidbody.AddForce(moveDirection, ForceMode.Force);
 
+
+
+        //rotation
+
+        if (moveDirection.magnitude > 0f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation,targetRotation,Time.deltaTime * rotationSpeed);
+        }
         SpeedControl();
     }
 
