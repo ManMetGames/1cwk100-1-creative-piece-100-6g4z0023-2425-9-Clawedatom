@@ -121,8 +121,7 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.JumpActions.started += playerControls => playerManager.HandlePressJumpKey();
             playerControls.PlayerMovement.JumpActions.canceled += playerControls => playerManager.HandleReleaseJumpKey();
 
-            playerControls.PlayerMovement.Glide.started += playerControls => playerManager.HandleGlide(true);
-            playerControls.PlayerMovement.Glide.canceled += playerControls => playerManager.HandleGlide(false);
+          
 
         }
         playerControls.Enable();

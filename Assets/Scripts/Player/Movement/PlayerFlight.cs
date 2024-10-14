@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerFlight : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class PlayerFlight : MonoBehaviour
 
     [SerializeField] private float liftForce = 4f;
 
-    [Header("Glide Fields")]
-    [SerializeField] private float glideGravity = 4f;    
+
+    [SerializeField] private GameObject thrusterParticlesGO;    
 
     #endregion
 
@@ -45,12 +46,14 @@ public class PlayerFlight : MonoBehaviour
     {
         playerUIManager.HandleSetFlightSlider(maxFlightTime);
 
+
+        HandleDisableFlight();
     }
     #endregion
 
     #region Update Functions
 
-    public void OnUpdate(bool glideFlag, bool flightFlag)
+    public void OnUpdate(bool flightFlag)
     {
         if (flightFlag)
         {
@@ -61,10 +64,7 @@ public class PlayerFlight : MonoBehaviour
             RegenFlightTimer();
         }
        
-        if (glideFlag && rigidBody.velocity.y < 0f)
-        {
-            ApplyGlideGravity();
-        }
+        
     }
     #endregion
 
@@ -107,25 +107,16 @@ public class PlayerFlight : MonoBehaviour
     }
     #endregion
 
-    #region Glide Functions
-
-    public void ApplyGlideGravity()
+    public void HandleEnableFlight()
     {
-        rigidBody.useGravity = false;
-
-        Vector3 glideGrav = -Vector3.up * glideGravity;
-
-        rigidBody.AddForce(glideGrav, ForceMode.Force);
+        thrusterParticlesGO.SetActive(true);
     }
 
     public void HandleDisableFlight()
     {
         rigidBody.useGravity = true;
+        thrusterParticlesGO.SetActive(false);
     }
-    public void HandleDisableGlide()
-    {
-        rigidBody.useGravity = true;
-    }
-    #endregion
+    
 
 }

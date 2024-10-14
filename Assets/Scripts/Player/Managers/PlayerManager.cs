@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     PlayerFlight playerFlight;
 
     PlayerAnimationManager playerAnimationManager;
+
+    PlayerInteract playerInteract;
     #endregion
 
     #region Private Fields
@@ -29,7 +31,6 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private bool _jumpFlag;
 
-    [SerializeField] private bool _glideFlag;
 
 
     [Header("Player Cans")]
@@ -95,11 +96,7 @@ public class PlayerManager : MonoBehaviour
         set { _groundedFlag = value; }
     }
 
-    public bool GlideFlag
-    {
-        get { return _glideFlag; }
-        set { _glideFlag = value; }
-    }
+        
     #endregion
 
     #region Start Up
@@ -117,6 +114,8 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion = GetComponent<PlayerLocomotion>();
 
         playerAnimationManager = GetComponentInChildren<PlayerAnimationManager>();
+
+        playerInteract = GetComponent<PlayerInteract>();
     }
     private void AwakenSiblings()
     {
@@ -124,6 +123,8 @@ public class PlayerManager : MonoBehaviour
         playerFlight.OnAwake();
 
         playerAnimationManager.OnAwake();
+
+        playerInteract.OnAwake();
     }
     public void OnStart()
     {
@@ -144,6 +145,8 @@ public class PlayerManager : MonoBehaviour
         playerFlight.OnStart();
 
         playerAnimationManager.OnStart();
+
+        playerInteract.OnStart(); 
     }
     #endregion
 
@@ -175,9 +178,11 @@ public class PlayerManager : MonoBehaviour
     {
         GroundedFlag = playerLocomotion.OnUpdate(inputManager.Vertical, inputManager.Horizontal, GroundedFlag, SprintFlag);
 
-        playerFlight.OnUpdate(GlideFlag, FlightFlag);
+        playerFlight.OnUpdate(FlightFlag);
 
-        playerAnimationManager.OnUpdate(inputManager.MoveAmount, 0f, GroundedFlag, SprintFlag);
+        playerInteract.OnUpdate();
+
+        playerAnimationManager.OnUpdate(inputManager.MoveAmount, 0f, GroundedFlag, SprintFlag, FlightFlag);
     }
 
 
@@ -204,7 +209,7 @@ public class PlayerManager : MonoBehaviour
         {
             //EnableFlight
             FlightFlag = true;
-            GlideFlag = false;
+            playerFlight.HandleEnableFlight();
         }
     }
 
@@ -227,17 +232,7 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public void HandleGlide(bool state)
-    {
-        if (GroundedFlag || FlightFlag) return;
-        GlideFlag = state;
-        
-        if (!GlideFlag)
-        {
-            
-            playerFlight.HandleDisableGlide();
-        }
-    }
+    
 
 
     private IEnumerator JumpCooldown()

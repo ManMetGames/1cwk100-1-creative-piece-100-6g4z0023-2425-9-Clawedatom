@@ -86,7 +86,7 @@ public class CameraManager : MonoBehaviour
     private void HandleCameraRotation(float mouseX, float mouseY)
     {
         xRotation += mouseY * mouseSensitivity * Time.deltaTime;
-        yRotation -= mouseX * mouseSensitivity * Time.deltaTime;
+        yRotation += mouseX * mouseSensitivity * Time.deltaTime;
 
         xRotation = Mathf.Clamp(xRotation, minPivot, maxPivot);
 

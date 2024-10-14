@@ -34,13 +34,13 @@ public class PlayerAnimationManager : MonoBehaviour
 
     #region Update Functions
 
-    public void OnUpdate(float h, float v, bool g, bool s)
+    public void OnUpdate(float h, float v, bool g, bool s, bool f)
     {
-        CalculateAnimatorValues(h, v, g, s);
+        CalculateAnimatorValues(h, v, g, s, f);
     }
 
 
-    private void CalculateAnimatorValues(float horizontalMovement, float verticalMovement, bool isGrounded, bool isSprinting)
+    private void CalculateAnimatorValues(float horizontalMovement, float verticalMovement, bool isGrounded, bool isSprinting, bool isFlying)
     {
         float h;
         float v;
@@ -62,11 +62,16 @@ public class PlayerAnimationManager : MonoBehaviour
                 h = 2f;
             }
         }
-        else
+        else 
         {
             h = -2f;
         }
 
+        if (isFlying)
+        {
+            h = 0f;
+        }
+        
         animator.SetFloat(horizontal, h, 0.2f, Time.deltaTime);
     }
     #endregion
