@@ -1,33 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HUDUIManager : BaseUIScreen
+public class DeliveryUIManager : BaseUIScreen
 {
     #region Class References
-    private static HUDUIManager _instance;
+    private static DeliveryUIManager _instance;
     #endregion
 
     #region Private Fields
-    [Header("Slider")]
-    [SerializeField] private Slider flightSlider;
 
     #endregion
 
     #region Properties
 
-    public static HUDUIManager Instance
+    public static DeliveryUIManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindAnyObjectByType<HUDUIManager>();
+                _instance = FindAnyObjectByType<DeliveryUIManager>();
 
                 if (_instance == null)
                 {
-                    Debug.LogError("HUDUIManager has not been assigned");
+                    Debug.LogError("DeliveryUIManager has not been assigned");
                     Application.Quit();
                 }
             }
@@ -54,20 +51,5 @@ public class HUDUIManager : BaseUIScreen
     {
 
     }
-    #endregion
-
-    #region Slider
-    public void SetFlightSlider(float maxVal)
-    {
-        flightSlider.minValue = 0f;
-        flightSlider.maxValue = maxVal;
-        flightSlider.value = maxVal;
-    }
-
-    public void UpdateFlightSlider(float val)
-    {
-        flightSlider.value = val;
-    }
-
     #endregion
 }

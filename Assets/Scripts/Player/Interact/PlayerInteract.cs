@@ -88,5 +88,13 @@ public class PlayerInteract : MonoBehaviour
 
     }
 
+    public void Interact()
+    {
+        if (CurrentClosestInteractable != null)
+        {
+            CurrentClosestInteractable.OnInteract();
+        }
+    }
+
     #endregion
 }

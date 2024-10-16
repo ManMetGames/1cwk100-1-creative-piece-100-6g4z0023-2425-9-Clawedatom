@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     private static PlayerManager _instance;
 
     InputManager inputManager;
+    PlayerUIManager playerUIManager;
 
     PlayerLocomotion playerLocomotion;
     PlayerFlight playerFlight;
@@ -109,6 +110,7 @@ public class PlayerManager : MonoBehaviour
     private void AssignSiblings()
     {
         inputManager = InputManager.Instance;
+        playerUIManager = PlayerUIManager.Instance;
 
         playerFlight = GetComponent<PlayerFlight>();    
         playerLocomotion = GetComponent<PlayerLocomotion>();
@@ -199,6 +201,11 @@ public class PlayerManager : MonoBehaviour
 
     #region Input Actions
 
+    public void HandleInteract()
+    {
+        playerInteract.Interact();
+    }
+
     public void HandlePressJumpKey()
     {
         if (GroundedFlag)
@@ -239,6 +246,17 @@ public class PlayerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(jumpDelay);
         canJump = true;
+    }
+    #endregion
+
+    #region Delivery
+    public void HandleOpenDeliveryUI()
+    {
+        //cant move
+        MoveFlag = false;
+        //open ui
+        playerUIManager.HandleOpenDeliveryUI();
+        //pass through available deliveries
     }
     #endregion
 }

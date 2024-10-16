@@ -138,7 +138,7 @@
             "id": "ef469335-8cf3-464c-9a5e-90cd129c34de",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "20643b7f-3984-402c-a8ae-b9fdc80ae241",
                     "expectedControlType": "Button",
@@ -151,11 +151,11 @@
                 {
                     "name": "",
                     "id": "a41aaebf-1909-486d-b461-d6e046545417",
-                    "path": "",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

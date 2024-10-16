@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,6 +67,15 @@ public class PlayerUIManager : MonoBehaviour
     public void HandleUpdateFlightTimer(float val)
     {
         hudUIManager.UpdateFlightSlider(val);
+    }
+
+
+    #endregion
+
+    #region Delivery UI
+    public void HandleOpenDeliveryUI()
+    {
+
     }
     #endregion
 }

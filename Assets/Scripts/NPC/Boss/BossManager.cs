@@ -2,17 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossManager : Interactable
+public class BossManager : MonoBehaviour, Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Class References
+    private static BossManager _instance;
+
+    PlayerManager playerManager;
+    #endregion
+
+    #region Private Fields
+
+    #endregion
+
+    #region Properties
+
+    public static BossManager Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindAnyObjectByType<BossManager>();
+
+                if (_instance == null)
+                {
+                    Debug.LogError("BossManager has not been assigned");
+                    Application.Quit();
+                }
+            }
+            return _instance;
+
+        }
+    }
+    #endregion
+
+    #region Start Up
+    public void OnAwake()
+    {
+        playerManager = PlayerManager.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    
+
+    public void OnStart()
     {
-        
+
+    }
+    #endregion
+
+    #region Update Functions
+
+    public void OnUpdate()
+    {
+
+    }
+    #endregion
+
+    public void OnInteract()
+    {
+        playerManager.HandleOpenDeliveryUI();
     }
 }
