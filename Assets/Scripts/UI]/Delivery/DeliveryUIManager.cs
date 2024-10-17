@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class DeliveryUIManager : BaseUIScreen
 {
     #region Class References
     private static DeliveryUIManager _instance;
+
+    OrdersUIManager ordersUIManager;
     #endregion
 
     #region Private Fields
@@ -37,11 +40,16 @@ public class DeliveryUIManager : BaseUIScreen
     #region Start Up
     public void OnAwake()
     {
+        ordersUIManager = GetComponentInChildren<OrdersUIManager>();
 
+        ordersUIManager.OnAwake();
     }
     public void OnStart()
     {
+        ordersUIManager.OnStart();
 
+
+        HandleDisableScreenGO();
     }
     #endregion
 
@@ -49,6 +57,14 @@ public class DeliveryUIManager : BaseUIScreen
 
     public void OnUpdate()
     {
+        ordersUIManager.OnUpdate();
+    }
+
+    public void HandleOpenOrderUI(List<Order> orders)
+    {
+        HandleEnableScreenGO(); //open delivery main screen
+
+        ordersUIManager.HandleEnableOrderUI(orders);
 
     }
     #endregion

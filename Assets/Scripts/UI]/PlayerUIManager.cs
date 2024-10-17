@@ -9,6 +9,7 @@ public class PlayerUIManager : MonoBehaviour
     private static PlayerUIManager _instance;
 
     HUDUIManager hudUIManager;
+    DeliveryUIManager deliveryUIManager;
     #endregion
 
     #region Private Fields
@@ -41,12 +42,16 @@ public class PlayerUIManager : MonoBehaviour
     public void OnAwake()
     {
         hudUIManager = HUDUIManager.Instance;
+        deliveryUIManager = DeliveryUIManager.Instance;
+
 
         hudUIManager.OnAwake();
+        deliveryUIManager.OnAwake();
     }
     public void OnStart()
     {
         hudUIManager.OnStart();
+        deliveryUIManager.OnStart();
     }
     #endregion
 
@@ -72,10 +77,11 @@ public class PlayerUIManager : MonoBehaviour
 
     #endregion
 
-    #region Delivery UI
-    public void HandleOpenDeliveryUI()
+    #region Order UI
+    public void HandleOpenOrderUI(List<Order> orders)
     {
-
+        //open ui
+        deliveryUIManager.HandleOpenOrderUI(orders);
     }
     #endregion
 }

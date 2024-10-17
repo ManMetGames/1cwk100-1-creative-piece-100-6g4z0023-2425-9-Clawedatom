@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     CameraManager cameraManager;
 
     PlayerUIManager playerUIManager;
+    OrderManager orderManager;
+
+
+    BossManager bossManager;
 
     #endregion
 
@@ -67,6 +71,10 @@ public class GameManager : MonoBehaviour
         playerManager = PlayerManager.Instance;
 
         playerUIManager = PlayerUIManager.Instance;
+
+        orderManager = OrderManager.Instance;
+
+        bossManager = BossManager.Instance;
     }
 
     private void AwakenClasses()
@@ -76,6 +84,10 @@ public class GameManager : MonoBehaviour
         playerManager.OnAwake();
 
         playerUIManager.OnAwake();
+
+        orderManager.OnAwake();
+
+        bossManager.OnAwake();
     }
     public void OnStart()
     {
@@ -89,6 +101,10 @@ public class GameManager : MonoBehaviour
         playerManager.OnStart();
 
         playerUIManager.OnStart();
+
+        orderManager.OnStart();
+
+        bossManager.OnStart();
     }
     #endregion
 
@@ -110,6 +126,24 @@ public class GameManager : MonoBehaviour
         inputManager.OnUpdate();
 
         playerUIManager.OnUpdate();
+
+        orderManager.OnUpdate();
+
+        bossManager.OnUpdate();
+    }
+    #endregion
+
+
+    #region Game Functions
+    public void HandleOpenBossUI()
+    {
+        //get orders
+
+        //open ui with orders
+        playerUIManager.HandleOpenOrderUI(orderManager.GetOrders());
+        //playerMnaager.freeze player and stuff
+        playerManager.StopPlayerMovement();
+
     }
     #endregion
 }

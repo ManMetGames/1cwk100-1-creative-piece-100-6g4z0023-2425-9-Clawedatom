@@ -7,7 +7,7 @@ public class BossManager : MonoBehaviour, Interactable
     #region Class References
     private static BossManager _instance;
 
-    PlayerManager playerManager;
+    GameManager gameManager;
     #endregion
 
     #region Private Fields
@@ -39,10 +39,10 @@ public class BossManager : MonoBehaviour, Interactable
     #region Start Up
     public void OnAwake()
     {
-        playerManager = PlayerManager.Instance;
+        gameManager = GameManager.Instance;
     }
 
-    
+
 
     public void OnStart()
     {
@@ -60,6 +60,6 @@ public class BossManager : MonoBehaviour, Interactable
 
     public void OnInteract()
     {
-        playerManager.HandleOpenDeliveryUI();
+        gameManager.HandleOpenBossUI();
     }
 }

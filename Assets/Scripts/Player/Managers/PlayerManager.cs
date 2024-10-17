@@ -249,14 +249,11 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    #region Delivery
-    public void HandleOpenDeliveryUI()
+    #region Movement
+    public void StopPlayerMovement()
     {
         //cant move
         MoveFlag = false;
-        //open ui
-        playerUIManager.HandleOpenDeliveryUI();
-        //pass through available deliveries
     }
     #endregion
 }
