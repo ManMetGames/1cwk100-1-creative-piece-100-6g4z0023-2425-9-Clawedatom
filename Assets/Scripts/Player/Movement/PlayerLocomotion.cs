@@ -58,11 +58,16 @@ public class PlayerLocomotion : MonoBehaviour
 
     #region Update Functions
 
-    public bool OnUpdate(float horizontal, float vertical, bool groundFlag, bool sprintFlag)
+    public bool OnUpdate(float horizontal, float vertical, bool moveFlag, bool groundFlag, bool sprintFlag)
     {
         groundFlag = HandleGroundCheck();
         
-        HandleMovement(horizontal, vertical, groundFlag, sprintFlag);
+
+        if (moveFlag)
+        {
+            HandleMovement(horizontal, vertical, groundFlag, sprintFlag);
+
+        }
         
 
 

@@ -105,6 +105,8 @@ public class PlayerManager : MonoBehaviour
     {
         AssignSiblings();
         AwakenSiblings();
+
+
     }
 
     private void AssignSiblings()
@@ -138,7 +140,7 @@ public class PlayerManager : MonoBehaviour
     private void SetBools()
     {
         canJump = true;
-        
+        EnablePlayerMovement();
     }
 
     private void StartSiblings()
@@ -178,7 +180,7 @@ public class PlayerManager : MonoBehaviour
 
     private void UpdateSiblings()
     {
-        GroundedFlag = playerLocomotion.OnUpdate(inputManager.Vertical, inputManager.Horizontal, GroundedFlag, SprintFlag);
+        GroundedFlag = playerLocomotion.OnUpdate(inputManager.Vertical, inputManager.Horizontal, MoveFlag ,GroundedFlag, SprintFlag);
 
         playerFlight.OnUpdate(FlightFlag);
 
@@ -250,10 +252,17 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     #region Movement
-    public void StopPlayerMovement()
+
+    public void EnablePlayerMovement()
+    {
+        MoveFlag = true;
+    }
+    public void DisablePlayerMovement()
     {
         //cant move
         MoveFlag = false;
     }
+
+
     #endregion
 }

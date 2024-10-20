@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDUIManager : BaseUIScreen
+public class HUDUIManager : BaseUI
 {
     #region Class References
     private static HUDUIManager _instance;
@@ -53,6 +53,17 @@ public class HUDUIManager : BaseUIScreen
     public void OnUpdate()
     {
 
+    }
+    #endregion
+
+    #region HUD UI
+    public override void HandleOpenUI()
+    {
+        base.HandleOpenUI();
+    }
+    public override void HandleCloseUI()
+    {
+        base.HandleCloseUI();
     }
     #endregion
 

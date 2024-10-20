@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenGO: {fileID: 407862634}
+  _typeOfUI: 1
 --- !u!1 &76956598
 GameObject:
   m_ObjectHideFlags: 0
@@ -6211,6 +6212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenGO: {fileID: 1434283811}
+  _typeOfUI: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6583,7 +6585,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1216131958}
-  - component: {fileID: 1216131959}
   m_Layer: 5
   m_Name: HUDScreen
   m_TagString: Untagged
@@ -6611,20 +6612,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1216131959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216131957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd892e5996654c8478439889b2ee3c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screenGO: {fileID: 0}
-  flightSlider: {fileID: 102017993}
 --- !u!1 &1221643982
 GameObject:
   m_ObjectHideFlags: 0
@@ -6657,6 +6644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606cd161b5304034ab87254f0b780ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentActiveUI: 2
 --- !u!114 &1221643984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12756,6 +12744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenGO: {fileID: 1216131957}
+  _typeOfUI: 0
   flightSlider: {fileID: 102017993}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -122,8 +122,16 @@ public class GameManager : MonoBehaviour
     private void UpdateClasses()
     {
         playerManager.OnUpdate();
-        cameraManager.OnUpdate(inputManager.MouseX, inputManager.MouseY);
+
         inputManager.OnUpdate();
+        if (playerManager.MoveFlag)
+        {
+            cameraManager.OnUpdate(inputManager.MouseX, inputManager.MouseY);
+        }
+        else
+        {
+            inputManager.MoveAmount = 0;
+        }
 
         playerUIManager.OnUpdate();
 
@@ -135,15 +143,6 @@ public class GameManager : MonoBehaviour
 
 
     #region Game Functions
-    public void HandleOpenBossUI()
-    {
-        //get orders
-
-        //open ui with orders
-        playerUIManager.HandleOpenOrderUI(orderManager.GetOrders());
-        //playerMnaager.freeze player and stuff
-        playerManager.StopPlayerMovement();
-
-    }
+    
     #endregion
 }

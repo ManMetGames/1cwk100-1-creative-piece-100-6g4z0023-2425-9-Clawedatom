@@ -9,6 +9,9 @@ public class InputManager : MonoBehaviour
 
     PlayerControls playerControls;
     PlayerManager playerManager;
+
+
+    PlayerUIManager playerUIManager;
     #endregion
 
     #region Private Fields
@@ -80,6 +83,7 @@ public class InputManager : MonoBehaviour
     public void OnAwake()
     {
         playerManager = PlayerManager.Instance;
+        playerUIManager = PlayerUIManager.Instance;
     }
     public void OnStart()
     {
@@ -122,6 +126,10 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.JumpActions.canceled += playerControls => playerManager.HandleReleaseJumpKey();
 
             playerControls.PlayerActions.Interact.performed += playerControls => playerManager.HandleInteract();
+
+            playerControls.PlayerUI.CloseUI.performed += playerControls => playerUIManager.HandleCloseUI();
+
+
 
         }
         playerControls.Enable();

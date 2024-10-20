@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrdersUIManager : BaseUIScreen
+public class OrdersUIManager : BaseUI
 {
     #region Class References
-    
+    OrderManager orderManager;
     #endregion
 
     #region Private Fields
@@ -21,7 +21,7 @@ public class OrdersUIManager : BaseUIScreen
     #region Start Up
     public void OnAwake()
     {
-
+        orderManager = OrderManager.Instance;
     }
     public void OnStart()
     {
@@ -38,13 +38,20 @@ public class OrdersUIManager : BaseUIScreen
 
     }
 
-    
+
     #endregion
 
-    #region Toggle Functions
+    #region UI Functions
+
+    public override void HandleOpenUI()
+    {
+        base.HandleOpenUI();
+
+        //get orders here
+    }
     public void HandleEnableOrderUI(List<Order> orders)
     {
-        HandleEnableScreenGO();
+        HandleOpenUI();
         //show orders
     }
     #endregion

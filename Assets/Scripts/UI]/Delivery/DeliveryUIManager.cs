@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryUIManager : BaseUIScreen
+public class DeliveryUIManager : BaseUI
 {
     #region Class References
     private static DeliveryUIManager _instance;
@@ -60,12 +60,26 @@ public class DeliveryUIManager : BaseUIScreen
         ordersUIManager.OnUpdate();
     }
 
-    public void HandleOpenOrderUI(List<Order> orders)
+
+    #endregion
+
+    #region UI Functions
+    public void HandleOpenOrderUI()
     {
-        HandleEnableScreenGO(); //open delivery main screen
+        ordersUIManager.HandleOpenUI();
 
-        ordersUIManager.HandleEnableOrderUI(orders);
+        
 
+    }
+    public override void HandleOpenUI()
+    {
+        base.HandleOpenUI();
+    }
+    public override void HandleCloseUI()
+    {
+
+
+        base.HandleCloseUI(); // last
     }
     #endregion
 }
