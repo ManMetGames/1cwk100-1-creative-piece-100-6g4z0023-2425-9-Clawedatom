@@ -14,7 +14,6 @@ public class PlayerUIManager : MonoBehaviour
     HUDUIManager hudUIManager;
     DeliveryUIManager deliveryUIManager;
 
-    OrderManager orderManager;
     #endregion
 
     #region Private Fields
@@ -52,7 +51,7 @@ public class PlayerUIManager : MonoBehaviour
         hudUIManager = HUDUIManager.Instance;
         deliveryUIManager = DeliveryUIManager.Instance;
 
-        orderManager = OrderManager.Instance;
+       
 
         hudUIManager.OnAwake();
         deliveryUIManager.OnAwake();
@@ -61,6 +60,8 @@ public class PlayerUIManager : MonoBehaviour
     {
         hudUIManager.OnStart();
         deliveryUIManager.OnStart();
+
+        HandleOpenTargetUI(UIState.InGame);
     }
     #endregion
 
@@ -79,7 +80,7 @@ public class PlayerUIManager : MonoBehaviour
     {
         switch (targetUI)
         {
-            case (UIState.HUD):
+            case (UIState.InGame):
             {
                 //openHUDUI
                 HandleOpenHUDUI();
@@ -93,18 +94,29 @@ public class PlayerUIManager : MonoBehaviour
                 break;
             }
 
+            case (UIState.Recipient):
+            {
+                //open recipient
+                HandleCloseRecipientUI();
+                break;
+            }
+
         }
 
         //stop movement
-        playerManager.DisablePlayerMovement();
+        if (targetUI != UIState.InGame)
+        {
+            playerManager.DisablePlayerMovement();
+        }
         currentActiveUI = targetUI;
 
     }
     public void HandleCloseUI()
     {
-        switch (currentActiveUI)
+        if (currentActiveUI == UIState.InGame) return;
+            switch (currentActiveUI)
         {
-            case (UIState.HUD):
+            case (UIState.InGame):
             {
                 //closeHUDUI
                 HandleCloseHUDUI();
@@ -118,18 +130,30 @@ public class PlayerUIManager : MonoBehaviour
                 break;
             }
 
+            case (UIState.Recipient):
+            {
+                //close recipient
+                HandleCloseRecipientUI();
+                break;
+            }
+
         }
         playerManager.EnablePlayerMovement();
-        currentActiveUI = UIState.closed;
+        currentActiveUI = UIState.InGame;
     }
+
+    
     #endregion
 
     #region HUD Functions
 
-   
+
     public void HandleOpenHUDUI()
     {
         hudUIManager.HandleOpenUI();
+
+        //close everything else
+        
     }
 
     public void HandleCloseHUDUI()
@@ -152,10 +176,34 @@ public class PlayerUIManager : MonoBehaviour
     public void HandleOpenDeliveryUI()
     {
         deliveryUIManager.HandleOpenUI();
+        deliveryUIManager.CloseChildUI();
     }
     public void HandleCloseDeliveryUI()
     {
         deliveryUIManager.HandleCloseUI();
+    }
+    #endregion
+
+    #region Recipient UI
+    public void HandleOpenRecipientUI()
+    {
+
+        //open DeliveyUI
+        HandleOpenDeliveryUI();
+        //open ui
+        deliveryUIManager.HandleOpenRecipientUI();
+
+
+        //disable hud UI
+        HandleCloseHUDUI();
+    }
+    public void HandleCloseRecipientUI()
+    {
+        //close delivery(last)
+        HandleCloseDeliveryUI();
+
+        //open hud ui
+        HandleOpenHUDUI();
     }
     #endregion
 

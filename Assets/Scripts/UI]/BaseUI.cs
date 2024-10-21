@@ -36,8 +36,8 @@ public class BaseUI : MonoBehaviour, BaseUIInterface
 }
 public enum UIState
 {
-    HUD,
-    
+    InGame,
+    Recipient,
     Orders,
-    closed
+
 }

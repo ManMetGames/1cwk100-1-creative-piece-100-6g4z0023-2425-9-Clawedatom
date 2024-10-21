@@ -9,6 +9,7 @@ public class DeliveryUIManager : BaseUI
     private static DeliveryUIManager _instance;
 
     OrdersUIManager ordersUIManager;
+    RecipientUIManager recipientUIManager;
     #endregion
 
     #region Private Fields
@@ -41,13 +42,16 @@ public class DeliveryUIManager : BaseUI
     public void OnAwake()
     {
         ordersUIManager = GetComponentInChildren<OrdersUIManager>();
+        recipientUIManager = GetComponentInChildren<RecipientUIManager>();
+
 
         ordersUIManager.OnAwake();
+        recipientUIManager.OnAwake();
     }
     public void OnStart()
     {
         ordersUIManager.OnStart();
-
+        recipientUIManager.OnStart();
 
         HandleDisableScreenGO();
     }
@@ -57,6 +61,7 @@ public class DeliveryUIManager : BaseUI
 
     public void OnUpdate()
     {
+        recipientUIManager.OnUpdate();
         ordersUIManager.OnUpdate();
     }
 
@@ -64,6 +69,18 @@ public class DeliveryUIManager : BaseUI
     #endregion
 
     #region UI Functions
+
+    public void CloseChildUI()
+    {
+        recipientUIManager.HandleCloseUI();
+        ordersUIManager.HandleCloseUI();
+    }
+    public void HandleOpenRecipientUI()
+    {
+        recipientUIManager.HandleOpenUI();
+    }
+   
+
     public void HandleOpenOrderUI()
     {
         ordersUIManager.HandleOpenUI();
