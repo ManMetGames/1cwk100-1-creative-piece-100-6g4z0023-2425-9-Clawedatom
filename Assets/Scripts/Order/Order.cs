@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Order : MonoBehaviour
+[System.Serializable]
+public class Order
 {
     public void UpdateOrder()
     {
@@ -14,5 +15,11 @@ public class Order : MonoBehaviour
 
 public class OrderInfo
 {
+    [SerializeField]int _orderID = -1;
 
+    public int OrderID
+    {
+        get { return _orderID; }
+        set { _orderID = value; }
+    }
 }

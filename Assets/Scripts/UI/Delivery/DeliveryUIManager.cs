@@ -53,7 +53,6 @@ public class DeliveryUIManager : BaseUI
         ordersUIManager.OnStart();
         recipientUIManager.OnStart();
 
-        HandleDisableScreenGO();
     }
     #endregion
 
@@ -94,7 +93,7 @@ public class DeliveryUIManager : BaseUI
     }
     public override void HandleCloseUI()
     {
-
+        CloseChildUI();
 
         base.HandleCloseUI(); // last
     }

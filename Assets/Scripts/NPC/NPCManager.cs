@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCManager : MonoBehaviour
+public class NPCManager : NPCBase
 {
     #region Class References
 
@@ -36,6 +36,14 @@ public class NPCManager : MonoBehaviour
 
     public void OnUpdate()
     {
+
+    }
+    #endregion
+
+    #region NPC Functions
+    public override void OnInteract(PlayerManager playerManager)
+    {
+        base.OnInteract(playerManager);
 
     }
     #endregion

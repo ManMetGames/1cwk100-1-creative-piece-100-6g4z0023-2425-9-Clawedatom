@@ -97,7 +97,7 @@ public class PlayerUIManager : MonoBehaviour
             case (UIState.Recipient):
             {
                 //open recipient
-                HandleCloseRecipientUI();
+                HandleOpenRecipientUI();
                 break;
             }
 
@@ -109,6 +109,8 @@ public class PlayerUIManager : MonoBehaviour
             playerManager.DisablePlayerMovement();
         }
         currentActiveUI = targetUI;
+        Cursor.visible = true;
+        
 
     }
     public void HandleCloseUI()
@@ -140,6 +142,7 @@ public class PlayerUIManager : MonoBehaviour
         }
         playerManager.EnablePlayerMovement();
         currentActiveUI = UIState.InGame;
+        Cursor.visible = false;
     }
 
     
@@ -153,6 +156,7 @@ public class PlayerUIManager : MonoBehaviour
         hudUIManager.HandleOpenUI();
 
         //close everything else
+        deliveryUIManager.HandleCloseUI();
         
     }
 

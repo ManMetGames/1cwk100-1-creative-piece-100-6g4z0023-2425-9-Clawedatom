@@ -24,12 +24,12 @@ public class BaseUI : MonoBehaviour, BaseUIInterface
         HandleEnableScreenGO();
     }
 
-    public void HandleEnableScreenGO()
+    private void HandleEnableScreenGO()
     {
         screenGO.gameObject.SetActive(true);
     }
 
-    public void HandleDisableScreenGO()
+    private void HandleDisableScreenGO()
     {
         screenGO.gameObject.SetActive(false);
     }

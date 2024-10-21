@@ -265,4 +265,20 @@ public class PlayerManager : MonoBehaviour
 
 
     #endregion
+
+
+    #region NPC Functions
+    public void NPC_RecipientInteract()
+    {
+        playerUIManager.HandleOpenTargetUI(UIState.Recipient);
+    }
+    public void NPC_BossInteract()
+    {
+        playerUIManager.HandleOpenTargetUI(UIState.Orders);
+    }
+    public void NPC_WorldInteract()
+    {
+
+    }
+    #endregion
 }

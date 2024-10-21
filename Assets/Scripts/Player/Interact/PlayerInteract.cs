@@ -92,7 +92,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (CurrentClosestInteractable != null)
         {
-            CurrentClosestInteractable.OnInteract();
+            CurrentClosestInteractable.OnInteract(PlayerManager.Instance);
         }
     }
 

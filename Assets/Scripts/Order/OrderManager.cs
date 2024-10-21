@@ -10,7 +10,7 @@ public class OrderManager : MonoBehaviour
 
     #region Private Fields
     [Header("Order Fields")]
-    List<Order> allOrders = new List<Order>();
+    [SerializeField]List<Order> allOrders = new List<Order>();
 
     [SerializeField] private int maxOrders = 5;
     #endregion
@@ -45,7 +45,7 @@ public class OrderManager : MonoBehaviour
     public void OnStart()
     {
 
-
+        GenerateOrders();
         
     }
     #endregion
@@ -59,6 +59,11 @@ public class OrderManager : MonoBehaviour
     #endregion
 
     #region Order Functions
+    public void UpdateOrderList(List<Order> updatedOrders)
+    {
+        allOrders = updatedOrders;
+    }
+
     private void GenerateOrders()
     {
         for (int i = 0; i < maxOrders; i++)

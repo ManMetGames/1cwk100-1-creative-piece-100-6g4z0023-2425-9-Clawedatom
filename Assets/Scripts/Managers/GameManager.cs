@@ -60,8 +60,7 @@ public class GameManager : MonoBehaviour
         AwakenClasses();
 
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+       
     }
 
     private void AssignClasses()
@@ -92,6 +91,9 @@ public class GameManager : MonoBehaviour
     public void OnStart()
     {
         StartClasses();
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     private void StartClasses()

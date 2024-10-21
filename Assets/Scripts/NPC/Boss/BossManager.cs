@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossManager : MonoBehaviour, Interactable
+public class BossManager : NPCBase
 {
     #region Class References
     private static BossManager _instance;
@@ -58,8 +58,8 @@ public class BossManager : MonoBehaviour, Interactable
     }
     #endregion
 
-    public void OnInteract()
+    public override void OnInteract(PlayerManager playerManager)
     {
-        playerUIManager.HandleOpenTargetUI(UIState.Orders);
+        base.OnInteract(playerManager); 
     }
 }
