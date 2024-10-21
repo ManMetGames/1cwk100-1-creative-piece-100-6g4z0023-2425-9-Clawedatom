@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c63f307f27b39044b7b395f8eb1f114, type: 3}
-  m_Name: Bert_Lab
+  m_Script: {fileID: 11500000, guid: 59100a129e26f0c48828b629ef9f2a95, type: 3}
+  m_Name: Shadowfall Crater
   m_EditorClassIdentifier: 
-  _npcName: Bert
-  _npcIcon: {fileID: 0}
-  _assignedLocation: {fileID: 11400000, guid: 4e5b77d1e0b07bc46a6aef33afc6dbab, type: 2}
+  _locationName: Shadowfall Crater

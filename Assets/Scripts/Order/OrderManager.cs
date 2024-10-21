@@ -6,6 +6,8 @@ public class OrderManager : MonoBehaviour
 {
     #region Class References
     private static OrderManager _instance;
+
+    GameData gameData;
     #endregion
 
     #region Private Fields
@@ -40,7 +42,7 @@ public class OrderManager : MonoBehaviour
     #region Start Up
     public void OnAwake()
     {
-
+        gameData = GameData.Instance;
     }
     public void OnStart()
     {
@@ -69,24 +71,29 @@ public class OrderManager : MonoBehaviour
         for (int i = 0; i < maxOrders; i++)
         {
             Order newOrder = CreateNewOrder();
-
+            newOrder.GenerateStory();
             allOrders.Add(newOrder);
         }
     }
 
     private Order CreateNewOrder()
     {
-        Order newOrder = new Order();
+        OrderInfo newInfo = new OrderInfo();
 
         //id
-
+        newInfo.OrderID = Random.Range(10000, 99999);
         //recipient
-
+        int random = Random.Range(0, gameData.GameRecipientNPCS.Count - 1);
+        newInfo.Recipient = gameData.GameRecipientNPCS[random];
         //difficulty
-
+        random = Random.Range(1, 4);
+        newInfo.Difficulty = random;
         //timeLimit
-
+        newInfo.TimeLimit = 60f;
         //reward
+        newInfo.Value = 10;
+
+        Order newOrder = new Order(newInfo);
 
         return newOrder;
     }
