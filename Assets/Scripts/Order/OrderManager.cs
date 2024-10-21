@@ -77,6 +77,17 @@ public class OrderManager : MonoBehaviour
     private Order CreateNewOrder()
     {
         Order newOrder = new Order();
+
+        //id
+
+        //recipient
+
+        //difficulty
+
+        //timeLimit
+
+        //reward
+
         return newOrder;
     }
 
