@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bert_Lab
   m_EditorClassIdentifier: 
   _npcName: Bert
-  _npcIcon: {fileID: 0}
+  _npcIcon: {fileID: -4752524507169657972, guid: 7fb9ef8d6e755884f8bbce5b93204831, type: 3}
   _assignedLocation: {fileID: 11400000, guid: 4e5b77d1e0b07bc46a6aef33afc6dbab, type: 2}

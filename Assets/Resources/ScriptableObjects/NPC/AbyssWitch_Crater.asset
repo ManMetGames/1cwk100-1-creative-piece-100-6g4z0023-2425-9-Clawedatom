@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AbyssWitch_Crater
   m_EditorClassIdentifier: 
   _npcName: Abyss Witch
-  _npcIcon: {fileID: 0}
+  _npcIcon: {fileID: -5851231116886232993, guid: 47f4c9a1d571e2145bebbbc207d9195b, type: 3}
   _assignedLocation: {fileID: 11400000, guid: 0478c3634716db344a5ff71360a9883b, type: 2}

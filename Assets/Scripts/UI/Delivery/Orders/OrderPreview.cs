@@ -10,7 +10,7 @@ public class OrderPreview : MonoBehaviour
 	[SerializeField] private Order orderAssigned;
 
 	[SerializeField] private TMP_Text destinationText;
-	[SerializeField] private TMP_Text descriptionText;
+	[SerializeField] private List<GameObject> moneyIconGO;
 	[SerializeField] private TMP_Text timeText;
 	[SerializeField] private Image icon;
 	#endregion
@@ -26,9 +26,22 @@ public class OrderPreview : MonoBehaviour
 	private void SetUpSlot()
 	{
 		destinationText.text = "" + orderAssigned.OInfo.Recipient.NPCName + " At " + orderAssigned.OInfo.Recipient.AssignedLocation.LocationName;
-		descriptionText.text = orderAssigned.OInfo.OrderMiniDesc;
+
+		ChooseMoneyIcon();
+
 		icon.sprite = orderAssigned.OInfo.Recipient.NPCIcon;
 
+	}
+
+	private void ChooseMoneyIcon()
+	{
+		foreach (GameObject go in moneyIconGO)
+		{
+			go.SetActive(false);
+		}
+
+		int index = orderAssigned.OInfo.Difficulty - 1;
+		moneyIconGO[index].SetActive(true);
 	}
 	#endregion
 }

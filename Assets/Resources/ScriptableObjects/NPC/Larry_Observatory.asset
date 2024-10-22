@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Larry_Observatory
   m_EditorClassIdentifier: 
   _npcName: Larry
-  _npcIcon: {fileID: 0}
+  _npcIcon: {fileID: 3937464797149114721, guid: 0f97efa1be74f1f48b42d88ad0eb7c16, type: 3}
   _assignedLocation: {fileID: 11400000, guid: 236f5b46cde130946b239176dd8760cd, type: 2}
