@@ -108,5 +108,15 @@ public class ButtonUIManager : MonoBehaviour
         
         playerUIManager.Order_HandleOrderPreviewClick(button.GetComponent<OrderPreview>());
     }
+
+    public void Button_OrderUI_CloseOrderDetails()
+    {
+        playerUIManager.Order_HandleCloseOrderDetails();
+    }
+
+    public void Button_OrderUI_AcceptOrder()
+    {
+        playerUIManager.Order_HandleAcceptOrder();
+    }
     #endregion
 }

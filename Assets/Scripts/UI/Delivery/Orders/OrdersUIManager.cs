@@ -53,6 +53,19 @@ public class OrdersUIManager : BaseUI
 
     #endregion
 
+    #region Order Functions
+    public void AcceptOrder()
+    {
+        //identify selected order
+
+        //add to player order
+
+        //remove from list of orders
+
+        //order manager active order
+    }
+    #endregion
+
     #region UI Functions
 
     public override void HandleOpenUI()
@@ -129,6 +142,11 @@ public class OrdersUIManager : BaseUI
     public void EnableOrderDetailsPanel(OrderPreview previewSelected)
     {
         orderDetailsPanel.EnablePanel(previewSelected);
+    }
+
+    public void DisableOrderDetailsPanel()
+    {
+        orderDetailsPanel.DisablePanel();
     }
     #endregion
 }

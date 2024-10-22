@@ -98,6 +98,11 @@ public class DeliveryUIManager : BaseUI
     #endregion
 
     #region order Functions
+    public void OrderUI_AcceptOrder()
+    {
+        ordersUIManager.AcceptOrder();
+    }
+
     public void HandleOpenOrderUI()
     {
         ordersUIManager.HandleOpenUI();
@@ -109,6 +114,11 @@ public class DeliveryUIManager : BaseUI
     public void OrderUI_ClickOrderPreview(OrderPreview preview)
     {
         ordersUIManager.HandleOpenOrderPreview(preview);
+    }
+
+    public void OrderUI_CloseOrderDetails()
+    {
+        ordersUIManager.DisableOrderDetailsPanel();
     }
     #endregion
 }

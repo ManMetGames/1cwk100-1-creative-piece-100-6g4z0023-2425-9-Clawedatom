@@ -264,5 +264,15 @@ public class PlayerUIManager : MonoBehaviour
     {
         deliveryUIManager.OrderUI_ClickOrderPreview(preview);
     }
+
+    public void Order_HandleCloseOrderDetails()
+    {
+        deliveryUIManager.OrderUI_CloseOrderDetails();
+    }
+
+    public void Order_HandleAcceptOrder()
+    {
+        deliveryUIManager.OrderUI_AcceptOrder();
+    }
     #endregion
 }
