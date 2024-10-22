@@ -70,7 +70,7 @@ public class ButtonUIManager : MonoBehaviour
     public void OnUpdate()
     {
         CurrentButtonHovered = HandleButtonRaycast();
-        print(CurrentButtonHovered);
+        
     }
 
     private UIButton HandleButtonRaycast()
@@ -117,6 +117,11 @@ public class ButtonUIManager : MonoBehaviour
     public void Button_OrderUI_AcceptOrder()
     {
         playerUIManager.Order_HandleAcceptOrder();
+    }
+
+    public void Button_RecipientUI_ProcessDelivery()
+    {
+        playerUIManager.Recipient_HandleDelivery();
     }
     #endregion
 }

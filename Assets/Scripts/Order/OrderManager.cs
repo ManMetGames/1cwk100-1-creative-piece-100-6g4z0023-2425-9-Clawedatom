@@ -7,6 +7,7 @@ public class OrderManager : MonoBehaviour
     #region Class References
     private static OrderManager _instance;
 
+    PlayerManager playerManager;
     GameData gameData;
     #endregion
 
@@ -43,6 +44,8 @@ public class OrderManager : MonoBehaviour
     public void OnAwake()
     {
         gameData = GameData.Instance;
+
+        playerManager = PlayerManager.Instance;
     }
     public void OnStart()
     {
@@ -83,8 +86,8 @@ public class OrderManager : MonoBehaviour
         //id
         newInfo.OrderID = Random.Range(10000, 99999);
         //recipient
-        int random = Random.Range(0, gameData.GameRecipientNPCS.Count - 1);
-        newInfo.Recipient = gameData.GameRecipientNPCS[random];
+        int random = Random.Range(0, gameData.GameRecipientNPCs.Count - 1);
+        newInfo.Recipient = gameData.GameRecipientNPCs[random].NPC;
         //item
         random = Random.Range(0, gameData.GameOrderItems.Count - 1);
         newInfo.ItemOrdered = gameData.GameOrderItems[random];
@@ -105,6 +108,27 @@ public class OrderManager : MonoBehaviour
     public List<Order> GetOrders()
     {
         return allOrders;
+    }
+
+
+
+    public void ProcessAcceptedOrder(Order order)
+    {
+        //give player order magic pouch
+        playerManager.HandleSetActiveOrder(order);
+        //give recpient order id
+        foreach (RecipientManager recipientManager in gameData.GameRecipientNPCs)
+        {
+            //check if its the correct npc
+            if (recipientManager.NPC == order.OInfo.Recipient)
+            {
+                recipientManager.HandleSetRecipientOrderID(order.OInfo.OrderID);
+                break;
+            }
+        }
+
+
+    
     }
     #endregion
 

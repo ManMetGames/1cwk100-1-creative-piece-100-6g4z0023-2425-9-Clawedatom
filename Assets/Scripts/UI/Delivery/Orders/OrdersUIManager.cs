@@ -5,6 +5,8 @@ public class OrdersUIManager : BaseUI
 {
     #region Class References
     OrderManager orderManager;
+    PlayerManager playerManager;
+
 
     OrderDetailsPanel orderDetailsPanel;
     #endregion
@@ -23,6 +25,8 @@ public class OrdersUIManager : BaseUI
     
     List<GameObject> previewSlots = new List<GameObject>();
 
+    [SerializeField] private OrderPreview selectedOrderPreview;
+
     #endregion
 
     #region Properties
@@ -34,6 +38,8 @@ public class OrdersUIManager : BaseUI
     public void OnAwake()
     {
         orderManager = OrderManager.Instance;
+
+        playerManager = PlayerManager.Instance;
 
         orderDetailsPanel = GetComponentInChildren<OrderDetailsPanel>();
     }
@@ -57,7 +63,7 @@ public class OrdersUIManager : BaseUI
     public void AcceptOrder()
     {
         //identify selected order
-
+        orderManager.ProcessAcceptedOrder(selectedOrderPreview.OrderAssigned);
         //add to player order
 
         //remove from list of orders
@@ -98,6 +104,8 @@ public class OrdersUIManager : BaseUI
             Destroy(go);
         }
         //clear detials
+        selectedOrderPreview = null;
+
         orderDetailsPanel.DisablePanel();
     }
     public override void HandleCloseUI()
@@ -142,11 +150,15 @@ public class OrdersUIManager : BaseUI
     public void EnableOrderDetailsPanel(OrderPreview previewSelected)
     {
         orderDetailsPanel.EnablePanel(previewSelected);
+
+        selectedOrderPreview = previewSelected;
     }
 
     public void DisableOrderDetailsPanel()
     {
         orderDetailsPanel.DisablePanel();
+
+        selectedOrderPreview = null;
     }
     #endregion
 }

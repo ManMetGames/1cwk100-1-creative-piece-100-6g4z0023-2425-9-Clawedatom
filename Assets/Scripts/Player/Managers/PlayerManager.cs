@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
 
     PlayerLocomotion playerLocomotion;
     PlayerFlight playerFlight;
+    PlayerDelivery playerDelivery;
 
     PlayerAnimationManager playerAnimationManager;
 
@@ -116,6 +117,7 @@ public class PlayerManager : MonoBehaviour
 
         playerFlight = GetComponent<PlayerFlight>();    
         playerLocomotion = GetComponent<PlayerLocomotion>();
+        playerDelivery = GetComponent<PlayerDelivery>();
 
         playerAnimationManager = GetComponentInChildren<PlayerAnimationManager>();
 
@@ -125,6 +127,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerLocomotion.OnAwake();
         playerFlight.OnAwake();
+        playerDelivery.OnAwake();
 
         playerAnimationManager.OnAwake();
 
@@ -147,6 +150,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerLocomotion.OnStart();
         playerFlight.OnStart();
+        playerDelivery.OnStart();
 
         playerAnimationManager.OnStart();
 
@@ -187,6 +191,8 @@ public class PlayerManager : MonoBehaviour
         playerInteract.OnUpdate();
 
         playerAnimationManager.OnUpdate(inputManager.MoveAmount, 0f, GroundedFlag, SprintFlag, FlightFlag);
+
+        playerDelivery.OnUpdate();
     }
 
 
@@ -279,6 +285,13 @@ public class PlayerManager : MonoBehaviour
     public void NPC_WorldInteract()
     {
 
+    }
+    #endregion
+
+    #region Delivery
+    public void HandleSetActiveOrder(Order newOrder)
+    {
+        playerDelivery.SetActiveOrder(newOrder);
     }
     #endregion
 }

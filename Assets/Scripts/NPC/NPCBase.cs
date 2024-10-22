@@ -12,6 +12,7 @@ public class NPCBase : MonoBehaviour, Interactable
 	public NPCType TypeOfNPC
 	{
 		get { return _typeOfNPC; }
+		set { _typeOfNPC = value; }
 	}
 	#endregion
 

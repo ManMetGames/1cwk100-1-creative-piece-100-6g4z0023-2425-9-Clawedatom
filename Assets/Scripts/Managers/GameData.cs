@@ -9,9 +9,10 @@ public class GameData : MonoBehaviour
     #endregion
 
     #region Private Fields
-    [SerializeField] private List<NPCSO> _gameRecipientNPCS;
+    [SerializeField] private List<RecipientManager> _gameRecipientNPCS;
 
     [SerializeField] private List<OrderItemSO> _gameOrderItems;
+
     #endregion
 
     #region Properties
@@ -35,17 +36,30 @@ public class GameData : MonoBehaviour
         }
     }
 
-    public List<NPCSO> GameRecipientNPCS
-    {
-        get { return _gameRecipientNPCS; }
-        set { _gameRecipientNPCS = value; }
-    }
+   
 
     public List<OrderItemSO> GameOrderItems
     {
         get { return _gameOrderItems; }
     }
+
+    public List<RecipientManager> GameRecipientNPCs
+    {
+        get { return _gameRecipientNPCS; }
+        set { _gameRecipientNPCS = value; }
+    }
     #endregion
 
-    
+    #region Start Up Functions
+    public void OnAwake()
+    {
+        RecipientManager[] temp = FindObjectsOfType<RecipientManager>();
+
+        for (int i =0; i < temp.Length; i++)
+        {
+            GameRecipientNPCs.Add(temp[i]);
+        }
+    }
+    #endregion
+
 }

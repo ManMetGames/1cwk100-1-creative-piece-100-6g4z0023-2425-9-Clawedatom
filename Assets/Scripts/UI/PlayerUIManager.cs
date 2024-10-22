@@ -274,5 +274,10 @@ public class PlayerUIManager : MonoBehaviour
     {
         deliveryUIManager.OrderUI_AcceptOrder();
     }
+
+    public void Recipient_HandleDelivery()
+    {
+        //deliveryUIManager.ProcessDelivery();
+    }
     #endregion
 }

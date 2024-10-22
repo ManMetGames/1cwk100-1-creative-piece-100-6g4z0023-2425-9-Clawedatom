@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     PlayerUIManager playerUIManager;
     OrderManager orderManager;
 
-
+    GameData gameData;
     BossManager bossManager;
 
     #endregion
@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
 
     private void AssignClasses()
     {
+        gameData = GameData.Instance;
+
         inputManager = InputManager.Instance;
         cameraManager = CameraManager.Instance;
         playerManager = PlayerManager.Instance;
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour
 
     private void AwakenClasses()
     {
+        gameData.OnAwake();
+
         inputManager.OnAwake();
         cameraManager.OnAwake();
         playerManager.OnAwake();
