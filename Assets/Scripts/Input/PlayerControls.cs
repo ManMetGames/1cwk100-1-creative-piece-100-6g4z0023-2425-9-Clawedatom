@@ -204,6 +204,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""05a1af07-aa64-4e7e-9c2a-83a9f276fcd0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -228,6 +237,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Test"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c04defdd-e3d1-41c4-b37e-b026628a65e6"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -247,6 +267,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
         m_PlayerUI_CloseUI = m_PlayerUI.FindAction("CloseUI", throwIfNotFound: true);
         m_PlayerUI_Test = m_PlayerUI.FindAction("Test", throwIfNotFound: true);
+        m_PlayerUI_LeftClick = m_PlayerUI.FindAction("LeftClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -426,12 +447,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerUIActions> m_PlayerUIActionsCallbackInterfaces = new List<IPlayerUIActions>();
     private readonly InputAction m_PlayerUI_CloseUI;
     private readonly InputAction m_PlayerUI_Test;
+    private readonly InputAction m_PlayerUI_LeftClick;
     public struct PlayerUIActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @CloseUI => m_Wrapper.m_PlayerUI_CloseUI;
         public InputAction @Test => m_Wrapper.m_PlayerUI_Test;
+        public InputAction @LeftClick => m_Wrapper.m_PlayerUI_LeftClick;
         public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -447,6 +470,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Test.started += instance.OnTest;
             @Test.performed += instance.OnTest;
             @Test.canceled += instance.OnTest;
+            @LeftClick.started += instance.OnLeftClick;
+            @LeftClick.performed += instance.OnLeftClick;
+            @LeftClick.canceled += instance.OnLeftClick;
         }
 
         private void UnregisterCallbacks(IPlayerUIActions instance)
@@ -457,6 +483,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Test.started -= instance.OnTest;
             @Test.performed -= instance.OnTest;
             @Test.canceled -= instance.OnTest;
+            @LeftClick.started -= instance.OnLeftClick;
+            @LeftClick.performed -= instance.OnLeftClick;
+            @LeftClick.canceled -= instance.OnLeftClick;
         }
 
         public void RemoveCallbacks(IPlayerUIActions instance)
@@ -489,5 +518,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnCloseUI(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
     }
 }

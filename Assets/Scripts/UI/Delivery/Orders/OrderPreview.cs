@@ -7,30 +7,43 @@ using UnityEngine.UI;
 public class OrderPreview : MonoBehaviour
 {
 	#region Private Fields
-	[SerializeField] private Order orderAssigned;
+	[SerializeField] private Order _orderAssigned;
 
 	[SerializeField] private TMP_Text destinationText;
 	[SerializeField] private List<GameObject> moneyIconGO;
 	[SerializeField] private TMP_Text timeText;
 	[SerializeField] private Image icon;
+
+
+
+	public Order OrderAssigned
+	{
+		get { return _orderAssigned; }
+		set { _orderAssigned = value; }
+	}
 	#endregion
 
-	#region Preview Functions
+		#region Preview Functions
 	public void SetUpOrderPreview(Order order)
 	{
-		orderAssigned = order;
+		OrderAssigned = order;
 
 		SetUpSlot();
 	}
 
 	private void SetUpSlot()
 	{
-		destinationText.text = "" + orderAssigned.OInfo.Recipient.NPCName + " At " + orderAssigned.OInfo.Recipient.AssignedLocation.LocationName;
+		destinationText.text = "" + OrderAssigned.OInfo.Recipient.NPCName + " At " + OrderAssigned.OInfo.Recipient.AssignedLocation.LocationName;
 
 		ChooseMoneyIcon();
 
-		icon.sprite = orderAssigned.OInfo.Recipient.NPCIcon;
+		icon.sprite = OrderAssigned.OInfo.Recipient.NPCIcon;
 
+		//button
+
+		UIButton button = GetComponent<UIButton>();
+		button.onButtonClick.AddListener(() => ButtonUIManager.Instance.Button_OrderUI_OrderPreview(this.gameObject));
+		
 	}
 
 	private void ChooseMoneyIcon()
@@ -40,7 +53,7 @@ public class OrderPreview : MonoBehaviour
 			go.SetActive(false);
 		}
 
-		int index = orderAssigned.OInfo.Difficulty - 1;
+		int index = OrderAssigned.OInfo.Difficulty - 1;
 		moneyIconGO[index].SetActive(true);
 	}
 	#endregion

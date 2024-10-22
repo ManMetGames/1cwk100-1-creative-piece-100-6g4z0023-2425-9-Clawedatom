@@ -11,6 +11,8 @@ public class PlayerUIManager : MonoBehaviour
 
     PlayerManager playerManager;
 
+    ButtonUIManager buttonUIManager;
+
     HUDUIManager hudUIManager;
     DeliveryUIManager deliveryUIManager;
 
@@ -50,16 +52,20 @@ public class PlayerUIManager : MonoBehaviour
 
         hudUIManager = HUDUIManager.Instance;
         deliveryUIManager = DeliveryUIManager.Instance;
-
+        buttonUIManager = ButtonUIManager.Instance;
        
 
         hudUIManager.OnAwake();
         deliveryUIManager.OnAwake();
+        buttonUIManager.OnAwake();
     }
     public void OnStart()
     {
         hudUIManager.OnStart();
         deliveryUIManager.OnStart();
+        buttonUIManager.OnStart();
+
+
 
         HandleOpenTargetUI(UIState.InGame);
     }
@@ -70,6 +76,8 @@ public class PlayerUIManager : MonoBehaviour
     public void OnUpdate()
     {
         hudUIManager.OnUpdate();
+        buttonUIManager?.OnUpdate();
+        deliveryUIManager.OnUpdate();
     }
     #endregion
 
@@ -212,6 +220,8 @@ public class PlayerUIManager : MonoBehaviour
     #endregion
 
     #region Order UI
+
+
     public void HandleOpenOrderUI()
     {
 
@@ -234,5 +244,25 @@ public class PlayerUIManager : MonoBehaviour
     }
 
     
+
+    #endregion
+
+    #region Inputs
+    public void HandleLeftClick()
+    {
+        if (buttonUIManager.CurrentButtonHovered != null)
+        {
+            buttonUIManager.HandleButtonClick();
+        }
+    }
+
+
+    #endregion
+
+    #region Buttons
+    public void Order_HandleOrderPreviewClick(OrderPreview preview)
+    {
+        deliveryUIManager.OrderUI_ClickOrderPreview(preview);
+    }
     #endregion
 }

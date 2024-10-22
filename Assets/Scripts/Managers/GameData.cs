@@ -10,6 +10,8 @@ public class GameData : MonoBehaviour
 
     #region Private Fields
     [SerializeField] private List<NPCSO> _gameRecipientNPCS;
+
+    [SerializeField] private List<OrderItemSO> _gameOrderItems;
     #endregion
 
     #region Properties
@@ -37,6 +39,11 @@ public class GameData : MonoBehaviour
     {
         get { return _gameRecipientNPCS; }
         set { _gameRecipientNPCS = value; }
+    }
+
+    public List<OrderItemSO> GameOrderItems
+    {
+        get { return _gameOrderItems; }
     }
     #endregion
 

@@ -5,16 +5,24 @@ public class OrdersUIManager : BaseUI
 {
     #region Class References
     OrderManager orderManager;
+
+    OrderDetailsPanel orderDetailsPanel;
     #endregion
 
     #region Private Fields
     List<Order> updatedOrders = new List<Order>();
 
 
+    [Header("order preview")]
+
     [SerializeField] private Transform previewParent;
     [SerializeField] private GameObject orderPreviewPrefab;
 
     [SerializeField] private int maxOrderPreviews = 10;
+
+    
+    List<GameObject> previewSlots = new List<GameObject>();
+
     #endregion
 
     #region Properties
@@ -26,12 +34,12 @@ public class OrdersUIManager : BaseUI
     public void OnAwake()
     {
         orderManager = OrderManager.Instance;
+
+        orderDetailsPanel = GetComponentInChildren<OrderDetailsPanel>();
     }
     public void OnStart()
     {
-
-
-    
+        ClearOrderScreen();
     }
     #endregion
 
@@ -70,6 +78,26 @@ public class OrdersUIManager : BaseUI
         GenerateOrderPreviews(iterations);
     }
 
+    private void ClearOrderScreen()
+    {
+        foreach(GameObject go in previewSlots)
+        {
+            Destroy(go);
+        }
+        //clear detials
+        orderDetailsPanel.DisablePanel();
+    }
+    public override void HandleCloseUI()
+    {
+        orderManager.UpdateOrderList(updatedOrders);
+
+        ClearOrderScreen();
+
+        base.HandleCloseUI();
+    }
+    #endregion
+
+    #region Order preview
     private void GenerateOrderPreviews(int iterations)
     {
         for (int i = 0; i <= iterations; i++)
@@ -85,14 +113,22 @@ public class OrdersUIManager : BaseUI
         GameObject orderPreviewGO = Instantiate(orderPreviewPrefab, previewParent);
         orderPreviewGO.GetComponent<OrderPreview>().SetUpOrderPreview(order);
 
-        print("Created order Preview");
-    
-    }
-    public override void HandleCloseUI()
-    {
-        orderManager.UpdateOrderList(updatedOrders);
 
-        base.HandleCloseUI();
+        previewSlots.Add(orderPreviewGO);
+
+    }
+
+    public void HandleOpenOrderPreview(OrderPreview preview)
+    {
+        //set up order info
+        EnableOrderDetailsPanel(preview);
+    }
+    #endregion
+
+    #region Order Details
+    public void EnableOrderDetailsPanel(OrderPreview previewSelected)
+    {
+        orderDetailsPanel.EnablePanel(previewSelected);
     }
     #endregion
 }

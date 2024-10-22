@@ -128,7 +128,7 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Interact.performed += playerControls => playerManager.HandleInteract();
 
             playerControls.PlayerUI.CloseUI.performed += playerControls => playerUIManager.HandleCloseUI();
-
+            playerControls.PlayerUI.LeftClick.performed += playerControls => playerUIManager.HandleLeftClick();
 
 
         }

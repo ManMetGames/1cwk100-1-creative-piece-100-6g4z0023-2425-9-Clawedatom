@@ -68,25 +68,16 @@ public class DeliveryUIManager : BaseUI
     #endregion
 
     #region UI Functions
-
     public void CloseChildUI()
     {
         recipientUIManager.HandleCloseUI();
         ordersUIManager.HandleCloseUI();
     }
-    public void HandleOpenRecipientUI()
-    {
-        recipientUIManager.HandleOpenUI();
-    }
-   
+    
 
-    public void HandleOpenOrderUI()
-    {
-        ordersUIManager.HandleOpenUI();
 
-        
 
-    }
+    
     public override void HandleOpenUI()
     {
         base.HandleOpenUI();
@@ -96,6 +87,28 @@ public class DeliveryUIManager : BaseUI
         CloseChildUI();
 
         base.HandleCloseUI(); // last
+    }
+    #endregion
+
+    #region Recipient Functions
+    public void HandleOpenRecipientUI()
+    {
+        recipientUIManager.HandleOpenUI();
+    }
+    #endregion
+
+    #region order Functions
+    public void HandleOpenOrderUI()
+    {
+        ordersUIManager.HandleOpenUI();
+
+
+
+    }
+
+    public void OrderUI_ClickOrderPreview(OrderPreview preview)
+    {
+        ordersUIManager.HandleOpenOrderPreview(preview);
     }
     #endregion
 }

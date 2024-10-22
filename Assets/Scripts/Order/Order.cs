@@ -20,7 +20,7 @@ public class Order
 
     public void GenerateStory()
     {
-        OInfo.OrderMiniDesc = "" + OInfo.Recipient.NPCName + " wants " + "(Make Delivery items)" + "delivered in " + OInfo.TimeLimit + "s."; 
+        OInfo.OrderMiniDesc = "" + OInfo.Recipient.NPCName + " wants " + OInfo.ItemOrdered.ItemName + " delivered in " + OInfo.TimeLimit + "s."; 
     }
 
 
@@ -38,6 +38,8 @@ public class OrderInfo
     [SerializeField] private int _orderID = -1;
 
     [SerializeField] private NPCSO _recipient;
+
+    [SerializeField] private OrderItemSO _itemOrdered;
 
     [SerializeField] private int _difficulty;
 
@@ -60,6 +62,11 @@ public class OrderInfo
         set { _recipient = value; }
     }
 
+    public OrderItemSO ItemOrdered
+    {
+        get { return _itemOrdered; }
+        set { _itemOrdered = value; }
+    }
     public int Difficulty
     {
         get { return _difficulty; }

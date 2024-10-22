@@ -85,6 +85,10 @@ public class OrderManager : MonoBehaviour
         //recipient
         int random = Random.Range(0, gameData.GameRecipientNPCS.Count - 1);
         newInfo.Recipient = gameData.GameRecipientNPCS[random];
+        //item
+        random = Random.Range(0, gameData.GameOrderItems.Count - 1);
+        newInfo.ItemOrdered = gameData.GameOrderItems[random];
+        
         //difficulty
         random = Random.Range(1, 4);
         newInfo.Difficulty = random;
