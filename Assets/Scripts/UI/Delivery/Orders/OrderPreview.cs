@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -56,5 +57,10 @@ public class OrderPreview : MonoBehaviour
 		int index = OrderAssigned.OInfo.Difficulty - 1;
 		moneyIconGO[index].SetActive(true);
 	}
-	#endregion
+
+    public void DestroySelf()
+    {
+		Destroy(this.gameObject);
+    }
+    #endregion
 }

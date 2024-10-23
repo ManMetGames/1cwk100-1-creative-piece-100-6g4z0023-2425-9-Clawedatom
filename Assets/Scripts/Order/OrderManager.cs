@@ -16,6 +16,9 @@ public class OrderManager : MonoBehaviour
     [SerializeField]List<Order> allOrders = new List<Order>();
 
     [SerializeField] private int maxOrders = 5;
+
+
+    [SerializeField] private Order _activeOrder;
     #endregion
 
     #region Properties
@@ -38,6 +41,12 @@ public class OrderManager : MonoBehaviour
 
         }
     }
+
+    public Order ActiveOrder
+    {
+        get { return _activeOrder; }
+        set { _activeOrder = value; }
+    }
     #endregion
 
     #region Start Up
@@ -59,7 +68,10 @@ public class OrderManager : MonoBehaviour
 
     public void OnUpdate()
     {
-
+        if (ActiveOrder.OInfo.OrderID != -1)
+        {
+            ActiveOrder.UpdateOrder();
+        }
     }
     #endregion
 
@@ -110,12 +122,15 @@ public class OrderManager : MonoBehaviour
         return allOrders;
     }
 
-
+    private void SetActiveOrder(Order order)
+    {
+        ActiveOrder = order;
+    }
 
     public void ProcessAcceptedOrder(Order order)
     {
         //give player order magic pouch
-        playerManager.HandleSetActiveOrder(order);
+        SetActiveOrder(order);
         //give recpient order id
         foreach (RecipientManager recipientManager in gameData.GameRecipientNPCs)
         {
@@ -129,6 +144,17 @@ public class OrderManager : MonoBehaviour
 
 
     
+    }
+
+    public Order CompleteOrder()
+    {
+        ActiveOrder.GenerateSummary();
+
+        Order order = ActiveOrder;
+
+        ActiveOrder = null;
+
+        return order;
     }
     #endregion
 

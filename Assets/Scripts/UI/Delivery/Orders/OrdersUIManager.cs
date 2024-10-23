@@ -62,13 +62,17 @@ public class OrdersUIManager : BaseUI
     #region Order Functions
     public void AcceptOrder()
     {
-        //identify selected order
+        
         orderManager.ProcessAcceptedOrder(selectedOrderPreview.OrderAssigned);
-        //add to player order
+
 
         //remove from list of orders
+        previewSlots.Remove(selectedOrderPreview.gameObject);
+        selectedOrderPreview.DestroySelf();
+        orderDetailsPanel.DisablePanel();
 
-        //order manager active order
+        //remove from all order list
+        updatedOrders.Remove(selectedOrderPreview.OrderAssigned);
     }
     #endregion
 

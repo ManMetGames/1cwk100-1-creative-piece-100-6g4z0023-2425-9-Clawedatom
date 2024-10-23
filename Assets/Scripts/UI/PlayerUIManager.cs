@@ -277,7 +277,7 @@ public class PlayerUIManager : MonoBehaviour
 
     public void Recipient_HandleDelivery()
     {
-        //deliveryUIManager.ProcessDelivery();
+        deliveryUIManager.Recipient_ProcessDelivery();
     }
     #endregion
 }

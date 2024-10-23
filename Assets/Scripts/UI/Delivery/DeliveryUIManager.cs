@@ -95,7 +95,10 @@ public class DeliveryUIManager : BaseUI
     {
         recipientUIManager.HandleOpenUI();
     }
-
+    public void Recipient_ProcessDelivery()
+    {
+        recipientUIManager.ProcessDelivery();
+    }
 
     #endregion
 

@@ -52,6 +52,8 @@ public class OrderDetailsPanel : MonoBehaviour
 
     public void DisablePanel()
     {
+        if (previewShowing == null) return;
+
         previewShowing = null;
 
         orderDetailsGO?.SetActive(false);

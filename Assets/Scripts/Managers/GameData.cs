@@ -13,6 +13,8 @@ public class GameData : MonoBehaviour
 
     [SerializeField] private List<OrderItemSO> _gameOrderItems;
 
+    [SerializeField] private List<Sprite> rankSprites;
+
     #endregion
 
     #region Properties
@@ -62,4 +64,9 @@ public class GameData : MonoBehaviour
     }
     #endregion
 
+
+    public Sprite GetRankIcon(int rank)
+    {
+        return rankSprites[rank];
+    }
 }
